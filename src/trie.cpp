@@ -23,7 +23,7 @@ class Trie{
     Trie(){
         root = new TrieNode();
         ifstream dictionary;
-        dictionary.open("res/custom.txt");
+        dictionary.open("res/dictionary.txt");
         string word;
         while(getline(dictionary, word)){
             this->insert(word);
@@ -98,7 +98,7 @@ class Trie{
 
 int main(){
     Trie *t = new Trie();
-    vector<string> temp = t->wordStartingWith("adv");
+    vector<string> temp = t->wordStartingWith("appl");
     for(string i: temp){
         cout<<i<<endl;
     }
