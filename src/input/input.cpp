@@ -39,10 +39,10 @@ char getAll(int& currx, int& curry) {
 int main() {
     Initialize ncurses
     initscr();
-    cbreak();               // Disable line buffering
-    keypad(stdscr, TRUE);   // Enable function keys and arrow keys
-    noecho();               // Don't echo input characters
-    scrollok(stdscr, TRUE); // Enable scrolling
+    cbreak();               
+    keypad(stdscr, TRUE);  
+    noecho();               
+    scrollok(stdscr, TRUE); 
 
     vector<CharPosition> ;
 
@@ -54,46 +54,41 @@ int main() {
         ch = getch();
         switch (ch) {
             case KEY_BACKSPACE:
-                // Handle backspace
                 getyx(stdscr, y, x);
                 if (x > 0) {
                     mvwdelch(stdscr, y, x - 1);
-                    if (x > 0) move(y, x - 1);  // Move cursor left after deletion
+                    if (x > 0) move(y, x - 1); 
                 }
                 break;
             case KEY_UP:
-                // Move cursor up
                 getyx(stdscr, y, x);
                 if (y > 0) { 
                     move(y - 1, x);
                 }
                 break;
             case KEY_DOWN:
-                // Move cursor down
                 getyx(stdscr, y, x);
                 if (y < LINES - 1) {
                     move(y + 1, x);
                 }
                 break;
             case KEY_LEFT:
-                // Move cursor left
                 getyx(stdscr, y, x);
                 if (x > 0) {
                     move(y, x - 1);
                 }
                 break;
             case KEY_RIGHT:
-                // Move cursor right
                 getyx(stdscr, y, x);
                 if (x < COLS - 1) {
                     move(y, x + 1);
                 } else {
                     if (y < LINES - 1) {
-                        move(y + 1, 0);  // Move to the start of the next line
+                        move(y + 1, 0);  
                     }
                 }
                 break;
-            case KEY_F(7):  // Press F7 to exit
+            case KEY_F(7):  
                 shouldEndWin = true;
                 break;
             default:
@@ -105,9 +100,7 @@ int main() {
         refresh();
     }
 
-    endwin();  // End ncurses mode
-
-    // Print all stored characters and their positions  SM Q1NHMJK
+    endwin();  
     for (const auto& pos : charPositions) {
         cout << "Character: " << pos.character << " | Position: (" << pos.x << ", " << pos.y << ")" << endl;
     }
