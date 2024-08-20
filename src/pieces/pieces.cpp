@@ -16,7 +16,7 @@ class Piece
 
 class PieceTable
 {
-    private:
+    private:    
     string* buffer[2];
     vector<Piece> pieces;
     stack<string> undoStack;
@@ -35,7 +35,7 @@ class PieceTable
     void insertPiece(Piece p){
         pieces.push_back(p);
     }
-
+ 
     void display()
     {
         int count = 0;
@@ -50,7 +50,13 @@ class PieceTable
             cout<<endl;
         }
     }
+    const std::vector<Piece>&getPieces() const {
+        return pieces;
+    }
 
+    std::string* getBuffer(int bufferIndex) {
+        return buffer[bufferIndex];
+    }
     void push_back(int buff, int start_index, int length)
     {
         Piece p = Piece(buff, start_index, length);
